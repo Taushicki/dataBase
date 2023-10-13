@@ -25,7 +25,7 @@ namespace dataBase
             DialogResult result = loginWindow.ShowDialog();
             if (result == DialogResult.OK)
             {
-                MessageBox.Show(loginWindow.getUserLogin + "\n" + loginWindow.getUserPasword);
+                MessageBox.Show("Helo");
 
             }
             if (result == DialogResult.Cancel)

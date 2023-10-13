@@ -1,4 +1,5 @@
-﻿using System;
+﻿using Npgsql;
+using System;
 using System.Collections.Generic;
 using System.ComponentModel;
 using System.Data;
@@ -12,28 +13,39 @@ namespace dataBase
 {
     public partial class loginWindow : Form
     {
-        private string userLogin;
-        private string userPassword;
-
-
+        private string enteredLogin;
+        private string enteredPassword;
+        private String connection = String.Format("Server={0};Port={1};" +
+            "User id={2};Password={3};Database={4};",
+            "localhost", 5432, "postgres",
+            "password", "users");
+        private NpgsqlConnection conn;
+        private String sql;
+        private NpgsqlCommand cmd;
+        private DataTable dt;
         public loginWindow()
         {
             InitializeComponent();
         }
-
-        public string getUserLogin
+        private String getPasswordFromDB(String login, String password)
         {
-            get{
-                return userLogin;
+            try
+            {
+                conn.Open();
+                sql = @"select login from users where login like '" + login + "' and password like '" + password + "';";
+                cmd = new NpgsqlCommand(sql, conn);
+                String show = cmd.ExecuteScalar().ToString();
+                MessageBox.Show(show);
+                conn.Close();
+                return show;
+                
             }
-            
-        }
-        public string getUserPasword
-        {
-            get{
-                return userPassword;
+            catch (Exception ex)
+            {
+                conn.Close();
+                MessageBox.Show(ex.Message);
+                return null;
             }
-            
         }
 
         private void signInButton_Click(object sender, EventArgs e)
@@ -56,8 +68,9 @@ namespace dataBase
             }
             else
             {
-                userLogin = loginField.Text;
-                userPassword = passwordField.Text;
+                conn = new NpgsqlConnection(connection);
+                getPasswordFromDB(loginField.Text, passwordField.Text);
+                //MessageBox.Show(loginField.Text + "\n" + passwordField.Text);
                 DialogResult = DialogResult.OK;
             } 
         }
