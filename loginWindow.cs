@@ -13,42 +13,63 @@ namespace dataBase
 {
     public partial class loginWindow : Form
     {
-        private string enteredLogin;
-        private string enteredPassword;
-        private String connection = String.Format("Server={0};Port={1};" +
+        private readonly string connection = string.Format("Server={0};Port={1};" +
             "User id={2};Password={3};Database={4};",
             "localhost", 5432, "postgres",
-            "password", "users");
+            "password", "mobiledevicestore");
+
+        private string sql;
+
         private NpgsqlConnection conn;
-        private String sql;
         private NpgsqlCommand cmd;
-        private DataTable dt;
+
         public loginWindow()
         {
             InitializeComponent();
         }
-        private String getPasswordFromDB(String login, String password)
+
+        private bool FindUserFromDB(string login)
+        {
+            try {
+                conn.Open();
+                sql = @"select 1 from users where login = '" + login + "';";
+                cmd = new NpgsqlCommand(sql, conn);
+                cmd.ExecuteScalar().ToString();
+                conn.Close();
+                return true;
+            }
+            catch
+            {
+                conn.Close();
+                return false;
+            }
+            
+        }
+        private bool CheckUserPasswordFromDB(string login)
         {
             try
             {
                 conn.Open();
-                sql = @"select login from users where login like '" + login + "' and password like '" + password + "';";
+                sql = @"select password from users where login = '" + login + "';";
                 cmd = new NpgsqlCommand(sql, conn);
-                String show = cmd.ExecuteScalar().ToString();
-                MessageBox.Show(show);
-                conn.Close();
-                return show;
-                
+                if (cmd.ExecuteScalar().ToString() == passwordField.Text)
+                {
+                    conn.Close();
+                    return true;
+                }
+                else
+                { 
+                    conn.Close();
+                    return false;
+                }
             }
-            catch (Exception ex)
+            catch
             {
                 conn.Close();
-                MessageBox.Show(ex.Message);
-                return null;
+                return false;
             }
         }
-
-        private void signInButton_Click(object sender, EventArgs e)
+        private void SignInButton_Click(object sender, EventArgs e)
         {
             labelWarningLoginField.Visible = false;
             labelWarningPasswordField.Visible = false;
@@ -59,19 +80,29 @@ namespace dataBase
                 labelWarningPasswordField.Visible = true;
             }
             else if(loginField.Text == "")
-            {
                 labelWarningLoginField.Visible=true;
-            }
+
             else if (passwordField.Text == "")
-            {
                 labelWarningPasswordField.Visible = true;
-            }
+
             else
             {
                 conn = new NpgsqlConnection(connection);
-                getPasswordFromDB(loginField.Text, passwordField.Text);
-                //MessageBox.Show(loginField.Text + "\n" + passwordField.Text);
-                DialogResult = DialogResult.OK;
+                if (FindUserFromDB(loginField.Text))
+                {
+                    if (CheckUserPasswordFromDB(loginField.Text))
+                        DialogResult = DialogResult.OK;
+                    else 
+                    {
+                        labelWarningPasswordField.Text = "Invalid password";
+                        labelWarningPasswordField.Visible = true;
+                    }
+                }
+                else
+                {
+                    labelWarningLoginField.Text = "User not found";
+                    labelWarningLoginField.Visible=true;
+                }
             } 
         }
     }
