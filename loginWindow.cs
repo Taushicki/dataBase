@@ -13,97 +13,89 @@ namespace dataBase
 {
     public partial class loginWindow : Form
     {
-        private readonly string connection = string.Format("Server={0};Port={1};" +
-            "User id={2};Password={3};Database={4};",
-            "localhost", 5432, "postgres",
-            "password", "mobiledevicestore");
-
-        private string sql;
-
-        private NpgsqlConnection conn;
-        private NpgsqlCommand cmd;
-
-        public loginWindow()
+        private DataBaseConnection dataBase = new DataBaseConnection();
+        public string userRights;
+        public loginWindow() 
         {
-            InitializeComponent();
+            InitializeComponent(); 
         }
+        private void SignInButtonLP_Click(object sender, EventArgs e)
+        {
+            LabelWarningLoginFieldLP.Visible = false;
+            LabelWarningPasswordFieldLP.Visible = false;
 
-        private bool FindUserFromDB(string login)
-        {
-            try {
-                conn.Open();
-                sql = @"select 1 from users where login = '" + login + "';";
-                cmd = new NpgsqlCommand(sql, conn);
-                cmd.ExecuteScalar().ToString();
-                conn.Close();
-                return true;
-            }
-            catch
+            if (LoginFieldLP.Text == "")
+                LabelWarningLoginFieldLP.Visible = true;
+            if (PasswordFieldLP.Text == "")
+                LabelWarningPasswordFieldLP.Visible = true;
+            if(LoginFieldLP.Text != "" && PasswordFieldLP.Text != "")
             {
-                conn.Close();
-                return false;
-            }
-            
-        }
-        private bool CheckUserPasswordFromDB(string login)
-        {
-            try
-            {
-                conn.Open();
-                sql = @"select password from users where login = '" + login + "';";
-                cmd = new NpgsqlCommand(sql, conn);
-                if (cmd.ExecuteScalar().ToString() == passwordField.Text)
+                DataTable userData = dataBase.GetUserDataByLogin(LoginFieldLP.Text);
+                if (userData.Rows.Count > 0)
                 {
-                    conn.Close();
-                    return true;
-                }
-                else
-                { 
-                    conn.Close();
-                    return false;
-                }
-            }
-            catch
-            {
-                conn.Close();
-                return false;
-            }
-        }
-        private void SignInButton_Click(object sender, EventArgs e)
-        {
-            labelWarningLoginField.Visible = false;
-            labelWarningPasswordField.Visible = false;
-
-            if (loginField.Text == "" && passwordField.Text == "")
-            {
-                labelWarningLoginField.Visible = true;
-                labelWarningPasswordField.Visible = true;
-            }
-            else if(loginField.Text == "")
-                labelWarningLoginField.Visible=true;
-
-            else if (passwordField.Text == "")
-                labelWarningPasswordField.Visible = true;
-
-            else
-            {
-                conn = new NpgsqlConnection(connection);
-                if (FindUserFromDB(loginField.Text))
-                {
-                    if (CheckUserPasswordFromDB(loginField.Text))
-                        DialogResult = DialogResult.OK;
-                    else 
+                    DataRow dataRow = userData.Rows[0];
+                    if(dataRow["user_password"].ToString() == PasswordFieldLP.Text)
                     {
-                        labelWarningPasswordField.Text = "Invalid password";
-                        labelWarningPasswordField.Visible = true;
+                        userRights = dataRow["user_rights"].ToString();
+                        DialogResult = DialogResult.OK;
+                    }
+                    else
+                    {
+                        LabelWarningPasswordFieldLP.Text = "Invalid password";
+                        LabelWarningPasswordFieldLP.Visible = true;
                     }
                 }
                 else
                 {
-                    labelWarningLoginField.Text = "User not found";
-                    labelWarningLoginField.Visible=true;
+                    LabelWarningLoginFieldLP.Text = "User not found";
+                    LabelWarningLoginFieldLP.Visible=true;
                 }
             } 
+        }
+
+        private void SignUpButtonLP_Click(object sender, EventArgs e)
+        {
+            this.Controls.Clear();
+            this.Controls.Add(RegisterUserPanel);
+            RegisterUserPanel.Visible = true;  
+        }
+
+        private void SignUpButtonRP_Click(object sender, EventArgs e)
+        {
+            LabelWarningLoginFieldRP.Visible = false;
+            LabelWarningPasswordFieldRP.Visible = false;
+            LabelWarningConfirmPasswordFieldRP.Visible = false;
+
+            if (LoginFieldRP.Text == "")
+                LabelWarningLoginFieldRP.Visible = true;
+            if (PasswordFieldRP.Text == "")
+                LabelWarningPasswordFieldRP.Visible = true;
+            if (ConfirmPasswordFieldRP.Text == "")
+                LabelWarningConfirmPasswordFieldRP.Visible = true;
+            if(LoginFieldRP.Text != "" && PasswordFieldRP.Text != "" && ConfirmPasswordFieldRP.Text != "")
+            {
+                DataTable userData = dataBase.GetUserDataByLogin(LoginFieldLP.Text);
+                if (userData.Rows.Count == 0)
+                {
+                    if (PasswordFieldRP.Text == ConfirmPasswordFieldRP.Text)
+                    {
+                        dataBase.AddUser(LoginFieldRP.Text, PasswordFieldRP.Text);
+                        this.Controls.Clear();
+                        this.Controls.Add(LoginUserPanel);
+                        LoginUserPanel.Visible = true;
+                    }
+                    else
+                    {
+                        LabelWarningConfirmPasswordFieldRP.Text = "passwords don't match";
+                        LabelWarningConfirmPasswordFieldRP.Visible= true;
+                    }
+                }
+                else
+                {
+                    LabelWarningLoginFieldRP.Text = "Login is unavailable";
+                    LabelWarningLoginFieldRP.Visible = true;
+                }
+            }
         }
     }
 }

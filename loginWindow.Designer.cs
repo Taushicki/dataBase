@@ -28,138 +28,319 @@
         /// </summary>
         private void InitializeComponent()
         {
-            this.loginField = new System.Windows.Forms.TextBox();
-            this.passwordField = new System.Windows.Forms.TextBox();
-            this.SignInButton = new System.Windows.Forms.Button();
-            this.labelLogin = new System.Windows.Forms.Label();
-            this.labelPassword = new System.Windows.Forms.Label();
-            this.exitButton = new System.Windows.Forms.Button();
-            this.labelWarningLoginField = new System.Windows.Forms.Label();
-            this.labelWarningPasswordField = new System.Windows.Forms.Label();
-            this.signUpButton = new System.Windows.Forms.Button();
+            this.LoginFieldLP = new System.Windows.Forms.TextBox();
+            this.PasswordFieldLP = new System.Windows.Forms.TextBox();
+            this.SignInButtonLP = new System.Windows.Forms.Button();
+            this.LabelLoginLP = new System.Windows.Forms.Label();
+            this.LabelPasswordLP = new System.Windows.Forms.Label();
+            this.ExitButtonLP = new System.Windows.Forms.Button();
+            this.LabelWarningLoginFieldLP = new System.Windows.Forms.Label();
+            this.LabelWarningPasswordFieldLP = new System.Windows.Forms.Label();
+            this.SignUpButtonLP = new System.Windows.Forms.Button();
+            this.RegisterUserPanel = new System.Windows.Forms.Panel();
+            this.ExitButtonRP = new System.Windows.Forms.Button();
+            this.SignUpButtonRP = new System.Windows.Forms.Button();
+            this.LabelWarningConfirmPasswordFieldRP = new System.Windows.Forms.Label();
+            this.LabelWarningPasswordFieldRP = new System.Windows.Forms.Label();
+            this.LabelWarningLoginFieldRP = new System.Windows.Forms.Label();
+            this.LabelConfirmPasswordRP = new System.Windows.Forms.Label();
+            this.LabelLoginRP = new System.Windows.Forms.Label();
+            this.LabelPasswordRP = new System.Windows.Forms.Label();
+            this.ConfirmPasswordFieldRP = new System.Windows.Forms.TextBox();
+            this.PasswordFieldRP = new System.Windows.Forms.TextBox();
+            this.LoginFieldRP = new System.Windows.Forms.TextBox();
+            this.LoginUserPanel = new System.Windows.Forms.Panel();
+            this.RegisterUserPanel.SuspendLayout();
+            this.LoginUserPanel.SuspendLayout();
             this.SuspendLayout();
             // 
-            // loginField
+            // LoginFieldLP
             // 
-            this.loginField.Location = new System.Drawing.Point(64, 238);
-            this.loginField.Name = "loginField";
-            this.loginField.Size = new System.Drawing.Size(200, 20);
-            this.loginField.TabIndex = 0;
+            this.LoginFieldLP.Location = new System.Drawing.Point(67, 232);
+            this.LoginFieldLP.Name = "LoginFieldLP";
+            this.LoginFieldLP.Size = new System.Drawing.Size(200, 20);
+            this.LoginFieldLP.TabIndex = 0;
             // 
-            // passwordField
+            // PasswordFieldLP
             // 
-            this.passwordField.Location = new System.Drawing.Point(64, 315);
-            this.passwordField.Name = "passwordField";
-            this.passwordField.Size = new System.Drawing.Size(200, 20);
-            this.passwordField.TabIndex = 1;
-            this.passwordField.UseSystemPasswordChar = true;
+            this.PasswordFieldLP.Location = new System.Drawing.Point(67, 331);
+            this.PasswordFieldLP.Name = "PasswordFieldLP";
+            this.PasswordFieldLP.Size = new System.Drawing.Size(200, 20);
+            this.PasswordFieldLP.TabIndex = 1;
+            this.PasswordFieldLP.UseSystemPasswordChar = true;
             // 
-            // SignInButton
+            // SignInButtonLP
             // 
-            this.SignInButton.Location = new System.Drawing.Point(107, 397);
-            this.SignInButton.Name = "SignInButton";
-            this.SignInButton.Size = new System.Drawing.Size(120, 40);
-            this.SignInButton.TabIndex = 2;
-            this.SignInButton.Text = "Sign in";
-            this.SignInButton.UseVisualStyleBackColor = true;
-            this.SignInButton.Click += new System.EventHandler(this.SignInButton_Click);
+            this.SignInButtonLP.Location = new System.Drawing.Point(109, 396);
+            this.SignInButtonLP.Name = "SignInButtonLP";
+            this.SignInButtonLP.Size = new System.Drawing.Size(125, 40);
+            this.SignInButtonLP.TabIndex = 2;
+            this.SignInButtonLP.Text = "Sign in";
+            this.SignInButtonLP.UseVisualStyleBackColor = true;
+            this.SignInButtonLP.Click += new System.EventHandler(this.SignInButtonLP_Click);
             // 
-            // labelLogin
+            // LabelLoginLP
             // 
-            this.labelLogin.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
+            this.LabelLoginLP.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
             | System.Windows.Forms.AnchorStyles.Left) 
             | System.Windows.Forms.AnchorStyles.Right)));
-            this.labelLogin.AutoSize = true;
-            this.labelLogin.Font = new System.Drawing.Font("Microsoft Sans Serif", 15F);
-            this.labelLogin.Location = new System.Drawing.Point(135, 210);
-            this.labelLogin.Name = "labelLogin";
-            this.labelLogin.Size = new System.Drawing.Size(60, 25);
-            this.labelLogin.TabIndex = 3;
-            this.labelLogin.Text = "Login";
-            this.labelLogin.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
+            this.LabelLoginLP.AutoSize = true;
+            this.LabelLoginLP.Font = new System.Drawing.Font("Microsoft Sans Serif", 15F);
+            this.LabelLoginLP.Location = new System.Drawing.Point(136, 204);
+            this.LabelLoginLP.Name = "LabelLoginLP";
+            this.LabelLoginLP.Size = new System.Drawing.Size(60, 25);
+            this.LabelLoginLP.TabIndex = 3;
+            this.LabelLoginLP.Text = "Login";
+            this.LabelLoginLP.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
             // 
-            // labelPassword
+            // LabelPasswordLP
             // 
-            this.labelPassword.AutoSize = true;
-            this.labelPassword.Font = new System.Drawing.Font("Microsoft Sans Serif", 15F);
-            this.labelPassword.Location = new System.Drawing.Point(115, 287);
-            this.labelPassword.Name = "labelPassword";
-            this.labelPassword.Size = new System.Drawing.Size(98, 25);
-            this.labelPassword.TabIndex = 4;
-            this.labelPassword.Text = "Password";
+            this.LabelPasswordLP.AutoSize = true;
+            this.LabelPasswordLP.Font = new System.Drawing.Font("Microsoft Sans Serif", 15F);
+            this.LabelPasswordLP.Location = new System.Drawing.Point(120, 303);
+            this.LabelPasswordLP.Name = "LabelPasswordLP";
+            this.LabelPasswordLP.Size = new System.Drawing.Size(98, 25);
+            this.LabelPasswordLP.TabIndex = 4;
+            this.LabelPasswordLP.Text = "Password";
             // 
-            // exitButton
+            // ExitButtonLP
             // 
-            this.exitButton.DialogResult = System.Windows.Forms.DialogResult.Cancel;
-            this.exitButton.Location = new System.Drawing.Point(107, 492);
-            this.exitButton.Name = "exitButton";
-            this.exitButton.Size = new System.Drawing.Size(120, 40);
-            this.exitButton.TabIndex = 5;
-            this.exitButton.Text = "Exit";
-            this.exitButton.UseVisualStyleBackColor = true;
+            this.ExitButtonLP.DialogResult = System.Windows.Forms.DialogResult.Cancel;
+            this.ExitButtonLP.Location = new System.Drawing.Point(109, 488);
+            this.ExitButtonLP.Name = "ExitButtonLP";
+            this.ExitButtonLP.Size = new System.Drawing.Size(125, 40);
+            this.ExitButtonLP.TabIndex = 5;
+            this.ExitButtonLP.Text = "Exit";
+            this.ExitButtonLP.UseVisualStyleBackColor = true;
             // 
-            // labelWarningLoginField
+            // LabelWarningLoginFieldLP
             // 
-            this.labelWarningLoginField.ForeColor = System.Drawing.Color.Red;
-            this.labelWarningLoginField.Location = new System.Drawing.Point(97, 261);
-            this.labelWarningLoginField.Name = "labelWarningLoginField";
-            this.labelWarningLoginField.Size = new System.Drawing.Size(130, 13);
-            this.labelWarningLoginField.TabIndex = 6;
-            this.labelWarningLoginField.Text = "The field cannot be empty";
-            this.labelWarningLoginField.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
-            this.labelWarningLoginField.Visible = false;
+            this.LabelWarningLoginFieldLP.ForeColor = System.Drawing.Color.Red;
+            this.LabelWarningLoginFieldLP.Location = new System.Drawing.Point(106, 255);
+            this.LabelWarningLoginFieldLP.Name = "LabelWarningLoginFieldLP";
+            this.LabelWarningLoginFieldLP.Size = new System.Drawing.Size(130, 13);
+            this.LabelWarningLoginFieldLP.TabIndex = 6;
+            this.LabelWarningLoginFieldLP.Text = "The field cannot be empty";
+            this.LabelWarningLoginFieldLP.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
+            this.LabelWarningLoginFieldLP.Visible = false;
             // 
-            // labelWarningPasswordField
+            // LabelWarningPasswordFieldLP
             // 
-            this.labelWarningPasswordField.ForeColor = System.Drawing.Color.Red;
-            this.labelWarningPasswordField.Location = new System.Drawing.Point(97, 338);
-            this.labelWarningPasswordField.Name = "labelWarningPasswordField";
-            this.labelWarningPasswordField.Size = new System.Drawing.Size(130, 13);
-            this.labelWarningPasswordField.TabIndex = 7;
-            this.labelWarningPasswordField.Text = "The field cannot be empty";
-            this.labelWarningPasswordField.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
-            this.labelWarningPasswordField.Visible = false;
+            this.LabelWarningPasswordFieldLP.ForeColor = System.Drawing.Color.Red;
+            this.LabelWarningPasswordFieldLP.Location = new System.Drawing.Point(106, 354);
+            this.LabelWarningPasswordFieldLP.Name = "LabelWarningPasswordFieldLP";
+            this.LabelWarningPasswordFieldLP.Size = new System.Drawing.Size(130, 13);
+            this.LabelWarningPasswordFieldLP.TabIndex = 7;
+            this.LabelWarningPasswordFieldLP.Text = "The field cannot be empty";
+            this.LabelWarningPasswordFieldLP.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
+            this.LabelWarningPasswordFieldLP.Visible = false;
             // 
-            // signUpButton
+            // SignUpButtonLP
             // 
-            this.signUpButton.Location = new System.Drawing.Point(107, 446);
-            this.signUpButton.Name = "signUpButton";
-            this.signUpButton.Size = new System.Drawing.Size(120, 40);
-            this.signUpButton.TabIndex = 8;
-            this.signUpButton.Text = "Sign up";
-            this.signUpButton.UseVisualStyleBackColor = true;
+            this.SignUpButtonLP.Location = new System.Drawing.Point(109, 442);
+            this.SignUpButtonLP.Name = "SignUpButtonLP";
+            this.SignUpButtonLP.Size = new System.Drawing.Size(125, 40);
+            this.SignUpButtonLP.TabIndex = 8;
+            this.SignUpButtonLP.Text = "Sign up";
+            this.SignUpButtonLP.UseVisualStyleBackColor = true;
+            this.SignUpButtonLP.Click += new System.EventHandler(this.SignUpButtonLP_Click);
+            // 
+            // RegisterUserPanel
+            // 
+            this.RegisterUserPanel.AutoSize = true;
+            this.RegisterUserPanel.Controls.Add(this.ExitButtonRP);
+            this.RegisterUserPanel.Controls.Add(this.SignUpButtonRP);
+            this.RegisterUserPanel.Controls.Add(this.LabelWarningConfirmPasswordFieldRP);
+            this.RegisterUserPanel.Controls.Add(this.LabelWarningPasswordFieldRP);
+            this.RegisterUserPanel.Controls.Add(this.LabelWarningLoginFieldRP);
+            this.RegisterUserPanel.Controls.Add(this.LabelConfirmPasswordRP);
+            this.RegisterUserPanel.Controls.Add(this.LabelLoginRP);
+            this.RegisterUserPanel.Controls.Add(this.LabelPasswordRP);
+            this.RegisterUserPanel.Controls.Add(this.ConfirmPasswordFieldRP);
+            this.RegisterUserPanel.Controls.Add(this.PasswordFieldRP);
+            this.RegisterUserPanel.Controls.Add(this.LoginFieldRP);
+            this.RegisterUserPanel.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.RegisterUserPanel.Location = new System.Drawing.Point(0, 0);
+            this.RegisterUserPanel.Name = "RegisterUserPanel";
+            this.RegisterUserPanel.Size = new System.Drawing.Size(334, 561);
+            this.RegisterUserPanel.TabIndex = 9;
+            this.RegisterUserPanel.Visible = false;
+            // 
+            // ExitButtonRP
+            // 
+            this.ExitButtonRP.DialogResult = System.Windows.Forms.DialogResult.Cancel;
+            this.ExitButtonRP.Location = new System.Drawing.Point(109, 442);
+            this.ExitButtonRP.Name = "ExitButtonRP";
+            this.ExitButtonRP.Size = new System.Drawing.Size(125, 40);
+            this.ExitButtonRP.TabIndex = 12;
+            this.ExitButtonRP.Text = "Exit";
+            this.ExitButtonRP.UseVisualStyleBackColor = true;
+            // 
+            // SignUpButtonRP
+            // 
+            this.SignUpButtonRP.Location = new System.Drawing.Point(109, 396);
+            this.SignUpButtonRP.Name = "SignUpButtonRP";
+            this.SignUpButtonRP.Size = new System.Drawing.Size(125, 40);
+            this.SignUpButtonRP.TabIndex = 11;
+            this.SignUpButtonRP.Text = "Sign up";
+            this.SignUpButtonRP.UseVisualStyleBackColor = true;
+            this.SignUpButtonRP.Click += new System.EventHandler(this.SignUpButtonRP_Click);
+            // 
+            // LabelWarningConfirmPasswordFieldRP
+            // 
+            this.LabelWarningConfirmPasswordFieldRP.ForeColor = System.Drawing.Color.Red;
+            this.LabelWarningConfirmPasswordFieldRP.Location = new System.Drawing.Point(106, 354);
+            this.LabelWarningConfirmPasswordFieldRP.Name = "LabelWarningConfirmPasswordFieldRP";
+            this.LabelWarningConfirmPasswordFieldRP.Size = new System.Drawing.Size(130, 13);
+            this.LabelWarningConfirmPasswordFieldRP.TabIndex = 9;
+            this.LabelWarningConfirmPasswordFieldRP.Text = "The field cannot be empty";
+            this.LabelWarningConfirmPasswordFieldRP.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
+            this.LabelWarningConfirmPasswordFieldRP.Visible = false;
+            // 
+            // LabelWarningPasswordFieldRP
+            // 
+            this.LabelWarningPasswordFieldRP.ForeColor = System.Drawing.Color.Red;
+            this.LabelWarningPasswordFieldRP.Location = new System.Drawing.Point(106, 255);
+            this.LabelWarningPasswordFieldRP.Name = "LabelWarningPasswordFieldRP";
+            this.LabelWarningPasswordFieldRP.Size = new System.Drawing.Size(130, 13);
+            this.LabelWarningPasswordFieldRP.TabIndex = 8;
+            this.LabelWarningPasswordFieldRP.Text = "The field cannot be empty";
+            this.LabelWarningPasswordFieldRP.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
+            this.LabelWarningPasswordFieldRP.Visible = false;
+            // 
+            // LabelWarningLoginFieldRP
+            // 
+            this.LabelWarningLoginFieldRP.ForeColor = System.Drawing.Color.Red;
+            this.LabelWarningLoginFieldRP.Location = new System.Drawing.Point(106, 156);
+            this.LabelWarningLoginFieldRP.Name = "LabelWarningLoginFieldRP";
+            this.LabelWarningLoginFieldRP.Size = new System.Drawing.Size(130, 13);
+            this.LabelWarningLoginFieldRP.TabIndex = 7;
+            this.LabelWarningLoginFieldRP.Text = "The field cannot be empty";
+            this.LabelWarningLoginFieldRP.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
+            this.LabelWarningLoginFieldRP.Visible = false;
+            // 
+            // LabelConfirmPasswordRP
+            // 
+            this.LabelConfirmPasswordRP.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
+            | System.Windows.Forms.AnchorStyles.Left) 
+            | System.Windows.Forms.AnchorStyles.Right)));
+            this.LabelConfirmPasswordRP.AutoSize = true;
+            this.LabelConfirmPasswordRP.Font = new System.Drawing.Font("Microsoft Sans Serif", 15F);
+            this.LabelConfirmPasswordRP.Location = new System.Drawing.Point(86, 303);
+            this.LabelConfirmPasswordRP.Name = "LabelConfirmPasswordRP";
+            this.LabelConfirmPasswordRP.Size = new System.Drawing.Size(171, 25);
+            this.LabelConfirmPasswordRP.TabIndex = 6;
+            this.LabelConfirmPasswordRP.Text = "Confirm Password";
+            this.LabelConfirmPasswordRP.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
+            // 
+            // LabelLoginRP
+            // 
+            this.LabelLoginRP.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
+            | System.Windows.Forms.AnchorStyles.Left) 
+            | System.Windows.Forms.AnchorStyles.Right)));
+            this.LabelLoginRP.AutoSize = true;
+            this.LabelLoginRP.Font = new System.Drawing.Font("Microsoft Sans Serif", 15F);
+            this.LabelLoginRP.Location = new System.Drawing.Point(140, 105);
+            this.LabelLoginRP.Name = "LabelLoginRP";
+            this.LabelLoginRP.Size = new System.Drawing.Size(60, 25);
+            this.LabelLoginRP.TabIndex = 5;
+            this.LabelLoginRP.Text = "Login";
+            this.LabelLoginRP.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
+            // 
+            // LabelPasswordRP
+            // 
+            this.LabelPasswordRP.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
+            | System.Windows.Forms.AnchorStyles.Left) 
+            | System.Windows.Forms.AnchorStyles.Right)));
+            this.LabelPasswordRP.AutoSize = true;
+            this.LabelPasswordRP.Font = new System.Drawing.Font("Microsoft Sans Serif", 15F);
+            this.LabelPasswordRP.Location = new System.Drawing.Point(123, 204);
+            this.LabelPasswordRP.Name = "LabelPasswordRP";
+            this.LabelPasswordRP.Size = new System.Drawing.Size(98, 25);
+            this.LabelPasswordRP.TabIndex = 4;
+            this.LabelPasswordRP.Text = "Password";
+            this.LabelPasswordRP.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
+            // 
+            // ConfirmPasswordFieldRP
+            // 
+            this.ConfirmPasswordFieldRP.Location = new System.Drawing.Point(67, 331);
+            this.ConfirmPasswordFieldRP.Name = "ConfirmPasswordFieldRP";
+            this.ConfirmPasswordFieldRP.Size = new System.Drawing.Size(200, 20);
+            this.ConfirmPasswordFieldRP.TabIndex = 3;
+            // 
+            // PasswordFieldRP
+            // 
+            this.PasswordFieldRP.Location = new System.Drawing.Point(67, 232);
+            this.PasswordFieldRP.Name = "PasswordFieldRP";
+            this.PasswordFieldRP.Size = new System.Drawing.Size(200, 20);
+            this.PasswordFieldRP.TabIndex = 2;
+            // 
+            // LoginFieldRP
+            // 
+            this.LoginFieldRP.Location = new System.Drawing.Point(67, 133);
+            this.LoginFieldRP.Name = "LoginFieldRP";
+            this.LoginFieldRP.Size = new System.Drawing.Size(200, 20);
+            this.LoginFieldRP.TabIndex = 1;
+            // 
+            // LoginUserPanel
+            // 
+            this.LoginUserPanel.AutoSize = true;
+            this.LoginUserPanel.Controls.Add(this.LoginFieldLP);
+            this.LoginUserPanel.Controls.Add(this.LabelLoginLP);
+            this.LoginUserPanel.Controls.Add(this.ExitButtonLP);
+            this.LoginUserPanel.Controls.Add(this.SignUpButtonLP);
+            this.LoginUserPanel.Controls.Add(this.LabelWarningLoginFieldLP);
+            this.LoginUserPanel.Controls.Add(this.SignInButtonLP);
+            this.LoginUserPanel.Controls.Add(this.LabelPasswordLP);
+            this.LoginUserPanel.Controls.Add(this.LabelWarningPasswordFieldLP);
+            this.LoginUserPanel.Controls.Add(this.PasswordFieldLP);
+            this.LoginUserPanel.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.LoginUserPanel.Location = new System.Drawing.Point(0, 0);
+            this.LoginUserPanel.Name = "LoginUserPanel";
+            this.LoginUserPanel.Size = new System.Drawing.Size(334, 561);
+            this.LoginUserPanel.TabIndex = 10;
             // 
             // loginWindow
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(334, 561);
-            this.Controls.Add(this.signUpButton);
-            this.Controls.Add(this.labelWarningPasswordField);
-            this.Controls.Add(this.labelWarningLoginField);
-            this.Controls.Add(this.exitButton);
-            this.Controls.Add(this.labelPassword);
-            this.Controls.Add(this.labelLogin);
-            this.Controls.Add(this.SignInButton);
-            this.Controls.Add(this.passwordField);
-            this.Controls.Add(this.loginField);
+            this.Controls.Add(this.LoginUserPanel);
+            this.Controls.Add(this.RegisterUserPanel);
             this.Name = "loginWindow";
             this.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen;
             this.Text = "loginWindow";
+            this.RegisterUserPanel.ResumeLayout(false);
+            this.RegisterUserPanel.PerformLayout();
+            this.LoginUserPanel.ResumeLayout(false);
+            this.LoginUserPanel.PerformLayout();
             this.ResumeLayout(false);
             this.PerformLayout();
 
         }
 
         #endregion
-        private System.Windows.Forms.Button SignInButton;
-        private System.Windows.Forms.Label labelLogin;
-        private System.Windows.Forms.Label labelPassword;
-        private System.Windows.Forms.TextBox loginField;
-        private System.Windows.Forms.TextBox passwordField;
-        private System.Windows.Forms.Button exitButton;
-        private System.Windows.Forms.Label labelWarningLoginField;
-        private System.Windows.Forms.Label labelWarningPasswordField;
-        private System.Windows.Forms.Button signUpButton;
+        private System.Windows.Forms.Button SignInButtonLP;
+        private System.Windows.Forms.Label LabelLoginLP;
+        private System.Windows.Forms.Label LabelPasswordLP;
+        private System.Windows.Forms.TextBox LoginFieldLP;
+        private System.Windows.Forms.TextBox PasswordFieldLP;
+        private System.Windows.Forms.Button ExitButtonLP;
+        private System.Windows.Forms.Label LabelWarningLoginFieldLP;
+        private System.Windows.Forms.Label LabelWarningPasswordFieldLP;
+        private System.Windows.Forms.Button SignUpButtonLP;
+        private System.Windows.Forms.Panel RegisterUserPanel;
+        private System.Windows.Forms.Label LabelConfirmPasswordRP;
+        private System.Windows.Forms.Label LabelLoginRP;
+        private System.Windows.Forms.Label LabelPasswordRP;
+        private System.Windows.Forms.TextBox ConfirmPasswordFieldRP;
+        private System.Windows.Forms.TextBox PasswordFieldRP;
+        private System.Windows.Forms.TextBox LoginFieldRP;
+        private System.Windows.Forms.Panel LoginUserPanel;
+        private System.Windows.Forms.Button ExitButtonRP;
+        private System.Windows.Forms.Button SignUpButtonRP;
+        private System.Windows.Forms.Label LabelWarningConfirmPasswordFieldRP;
+        private System.Windows.Forms.Label LabelWarningPasswordFieldRP;
+        private System.Windows.Forms.Label LabelWarningLoginFieldRP;
     }
 }

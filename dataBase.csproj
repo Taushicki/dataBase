@@ -95,6 +95,13 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="addRecordWindow.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="addRecordWindow.Designer.cs">
+      <DependentUpon>addRecordWindow.cs</DependentUpon>
+    </Compile>
+    <Compile Include="DataBaseConnection.cs" />
     <Compile Include="loginWindow.cs">
       <SubType>Form</SubType>
     </Compile>
@@ -109,6 +116,9 @@
     </Compile>
     <Compile Include="Program.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
+    <EmbeddedResource Include="addRecordWindow.resx">
+      <DependentUpon>addRecordWindow.cs</DependentUpon>
+    </EmbeddedResource>
     <EmbeddedResource Include="loginWindow.resx">
       <DependentUpon>loginWindow.cs</DependentUpon>
     </EmbeddedResource>
