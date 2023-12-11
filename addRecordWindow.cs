@@ -20,7 +20,7 @@ namespace dataBase
         }
         private bool CheckAvailability()
         {
-            DataTable data = dataBase.LoadProductsTable();
+            DataTable data = dataBase.LoadTable("Products");
             var foundRow = data.Rows.Cast<DataRow>().FirstOrDefault(row => row["_name"].ToString() == product["name"]
             && row["_country"].ToString() == product["country"] && row["_category"].ToString() == product["category"]);
 

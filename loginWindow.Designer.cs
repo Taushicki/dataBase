@@ -38,6 +38,7 @@
             this.LabelWarningPasswordFieldLP = new System.Windows.Forms.Label();
             this.SignUpButtonLP = new System.Windows.Forms.Button();
             this.RegisterUserPanel = new System.Windows.Forms.Panel();
+            this.BackButtonRP = new System.Windows.Forms.Button();
             this.ExitButtonRP = new System.Windows.Forms.Button();
             this.SignUpButtonRP = new System.Windows.Forms.Button();
             this.LabelWarningConfirmPasswordFieldRP = new System.Windows.Forms.Label();
@@ -56,6 +57,8 @@
             // 
             // LoginFieldLP
             // 
+            this.LoginFieldLP.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
+            this.LoginFieldLP.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
             this.LoginFieldLP.Location = new System.Drawing.Point(67, 232);
             this.LoginFieldLP.Name = "LoginFieldLP";
             this.LoginFieldLP.Size = new System.Drawing.Size(200, 20);
@@ -63,6 +66,7 @@
             // 
             // PasswordFieldLP
             // 
+            this.PasswordFieldLP.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
             this.PasswordFieldLP.Location = new System.Drawing.Point(67, 331);
             this.PasswordFieldLP.Name = "PasswordFieldLP";
             this.PasswordFieldLP.Size = new System.Drawing.Size(200, 20);
@@ -85,7 +89,7 @@
             | System.Windows.Forms.AnchorStyles.Left) 
             | System.Windows.Forms.AnchorStyles.Right)));
             this.LabelLoginLP.AutoSize = true;
-            this.LabelLoginLP.Font = new System.Drawing.Font("Microsoft Sans Serif", 15F);
+            this.LabelLoginLP.Font = new System.Drawing.Font("Microsoft Sans Serif", 15F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.LabelLoginLP.Location = new System.Drawing.Point(136, 204);
             this.LabelLoginLP.Name = "LabelLoginLP";
             this.LabelLoginLP.Size = new System.Drawing.Size(60, 25);
@@ -148,6 +152,7 @@
             // RegisterUserPanel
             // 
             this.RegisterUserPanel.AutoSize = true;
+            this.RegisterUserPanel.Controls.Add(this.BackButtonRP);
             this.RegisterUserPanel.Controls.Add(this.ExitButtonRP);
             this.RegisterUserPanel.Controls.Add(this.SignUpButtonRP);
             this.RegisterUserPanel.Controls.Add(this.LabelWarningConfirmPasswordFieldRP);
@@ -166,10 +171,20 @@
             this.RegisterUserPanel.TabIndex = 9;
             this.RegisterUserPanel.Visible = false;
             // 
+            // BackButtonRP
+            // 
+            this.BackButtonRP.Location = new System.Drawing.Point(109, 442);
+            this.BackButtonRP.Name = "BackButtonRP";
+            this.BackButtonRP.Size = new System.Drawing.Size(125, 40);
+            this.BackButtonRP.TabIndex = 13;
+            this.BackButtonRP.Text = "Back";
+            this.BackButtonRP.UseVisualStyleBackColor = true;
+            this.BackButtonRP.Click += new System.EventHandler(this.BackButtonRP_Click);
+            // 
             // ExitButtonRP
             // 
             this.ExitButtonRP.DialogResult = System.Windows.Forms.DialogResult.Cancel;
-            this.ExitButtonRP.Location = new System.Drawing.Point(109, 442);
+            this.ExitButtonRP.Location = new System.Drawing.Point(109, 488);
             this.ExitButtonRP.Name = "ExitButtonRP";
             this.ExitButtonRP.Size = new System.Drawing.Size(125, 40);
             this.ExitButtonRP.TabIndex = 12;
@@ -295,6 +310,7 @@
             this.LoginUserPanel.Controls.Add(this.LabelWarningPasswordFieldLP);
             this.LoginUserPanel.Controls.Add(this.PasswordFieldLP);
             this.LoginUserPanel.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.LoginUserPanel.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
             this.LoginUserPanel.Location = new System.Drawing.Point(0, 0);
             this.LoginUserPanel.Name = "LoginUserPanel";
             this.LoginUserPanel.Size = new System.Drawing.Size(334, 561);
@@ -305,8 +321,8 @@
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(334, 561);
-            this.Controls.Add(this.LoginUserPanel);
             this.Controls.Add(this.RegisterUserPanel);
+            this.Controls.Add(this.LoginUserPanel);
             this.Name = "loginWindow";
             this.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen;
             this.Text = "loginWindow";
@@ -342,5 +358,6 @@
         private System.Windows.Forms.Label LabelWarningConfirmPasswordFieldRP;
         private System.Windows.Forms.Label LabelWarningPasswordFieldRP;
         private System.Windows.Forms.Label LabelWarningLoginFieldRP;
+        private System.Windows.Forms.Button BackButtonRP;
     }
 }

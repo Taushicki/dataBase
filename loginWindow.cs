@@ -14,7 +14,8 @@ namespace dataBase
     public partial class loginWindow : Form
     {
         private DataBaseConnection dataBase = new DataBaseConnection();
-        public string userRights;
+        private DataTable userData;
+        public string userId{ get; private set; }
         public loginWindow() 
         {
             InitializeComponent(); 
@@ -24,19 +25,28 @@ namespace dataBase
             LabelWarningLoginFieldLP.Visible = false;
             LabelWarningPasswordFieldLP.Visible = false;
 
-            if (LoginFieldLP.Text == "")
-                LabelWarningLoginFieldLP.Visible = true;
-            if (PasswordFieldLP.Text == "")
-                LabelWarningPasswordFieldLP.Visible = true;
-            if(LoginFieldLP.Text != "" && PasswordFieldLP.Text != "")
+            if (string.IsNullOrWhiteSpace(LoginFieldLP.Text))
             {
-                DataTable userData = dataBase.GetUserDataByLogin(LoginFieldLP.Text);
+                LabelWarningLoginFieldLP.Visible = true;
+            }
+
+            if (string.IsNullOrWhiteSpace(PasswordFieldLP.Text))
+            {
+                LabelWarningPasswordFieldLP.Visible = true;
+            }
+
+            if (!string.IsNullOrWhiteSpace(LoginFieldLP.Text) && !string.IsNullOrWhiteSpace(PasswordFieldLP.Text))
+            {
+                userData = dataBase.GetUserDataByLogin(LoginFieldLP.Text);
+
                 if (userData.Rows.Count > 0)
                 {
                     DataRow dataRow = userData.Rows[0];
-                    if(dataRow["user_password"].ToString() == PasswordFieldLP.Text)
+                    string userPassword = dataRow["user_password"].ToString();
+
+                    if (userPassword == PasswordFieldLP.Text)
                     {
-                        userRights = dataRow["user_rights"].ToString();
+                        userId = dataRow["user_id"].ToString();
                         DialogResult = DialogResult.OK;
                     }
                     else
@@ -48,16 +58,9 @@ namespace dataBase
                 else
                 {
                     LabelWarningLoginFieldLP.Text = "User not found";
-                    LabelWarningLoginFieldLP.Visible=true;
+                    LabelWarningLoginFieldLP.Visible = true;
                 }
-            } 
-        }
-
-        private void SignUpButtonLP_Click(object sender, EventArgs e)
-        {
-            this.Controls.Clear();
-            this.Controls.Add(RegisterUserPanel);
-            RegisterUserPanel.Visible = true;  
+            }
         }
 
         private void SignUpButtonRP_Click(object sender, EventArgs e)
@@ -66,28 +69,39 @@ namespace dataBase
             LabelWarningPasswordFieldRP.Visible = false;
             LabelWarningConfirmPasswordFieldRP.Visible = false;
 
-            if (LoginFieldRP.Text == "")
-                LabelWarningLoginFieldRP.Visible = true;
-            if (PasswordFieldRP.Text == "")
-                LabelWarningPasswordFieldRP.Visible = true;
-            if (ConfirmPasswordFieldRP.Text == "")
-                LabelWarningConfirmPasswordFieldRP.Visible = true;
-            if(LoginFieldRP.Text != "" && PasswordFieldRP.Text != "" && ConfirmPasswordFieldRP.Text != "")
+            if (string.IsNullOrWhiteSpace(LoginFieldRP.Text))
             {
-                DataTable userData = dataBase.GetUserDataByLogin(LoginFieldLP.Text);
+                LabelWarningLoginFieldRP.Visible = true;
+            }
+            if (string.IsNullOrWhiteSpace(PasswordFieldRP.Text))
+            {
+                LabelWarningPasswordFieldRP.Visible = true;
+            }
+            if (string.IsNullOrWhiteSpace(ConfirmPasswordFieldRP.Text))
+            {
+                LabelWarningConfirmPasswordFieldRP.Visible = true;
+            }
+
+            if (!LabelWarningLoginFieldRP.Visible && !LabelWarningPasswordFieldRP.Visible && !LabelWarningConfirmPasswordFieldRP.Visible)
+            {
+                DataTable userData = dataBase.GetUserDataByLogin(LoginFieldRP.Text);
+
                 if (userData.Rows.Count == 0)
                 {
                     if (PasswordFieldRP.Text == ConfirmPasswordFieldRP.Text)
                     {
-                        dataBase.AddUser(LoginFieldRP.Text, PasswordFieldRP.Text);
+                        dataBase.AddSeller(LoginFieldRP.Text, PasswordFieldRP.Text);
+                        LoginFieldRP.Clear();
+                        PasswordFieldRP.Clear();
+                        ConfirmPasswordFieldRP.Clear();
                         this.Controls.Clear();
                         this.Controls.Add(LoginUserPanel);
                         LoginUserPanel.Visible = true;
                     }
                     else
                     {
-                        LabelWarningConfirmPasswordFieldRP.Text = "passwords don't match";
-                        LabelWarningConfirmPasswordFieldRP.Visible= true;
+                        LabelWarningConfirmPasswordFieldRP.Text = "Passwords don't match";
+                        LabelWarningConfirmPasswordFieldRP.Visible = true;
                     }
                 }
                 else
@@ -97,5 +111,25 @@ namespace dataBase
                 }
             }
         }
+
+        private void SignUpButtonLP_Click(object sender, EventArgs e)
+        {
+            LoginFieldLP.Clear();
+            PasswordFieldLP.Clear();
+            this.Controls.Clear();
+            this.Controls.Add(RegisterUserPanel);
+            RegisterUserPanel.Visible = true;
+        }
+
+        private void BackButtonRP_Click(object sender, EventArgs e)
+        {
+            LoginFieldRP.Clear();
+            PasswordFieldRP.Clear();
+            ConfirmPasswordFieldRP.Clear();
+            this.Controls.Clear();
+            this.Controls.Add(LoginUserPanel);
+            LoginUserPanel.Visible = true;
+        }
+
     }
 }
