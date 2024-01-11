@@ -17,21 +17,44 @@ namespace dataBase
         private DataBaseConnection dataBase = new DataBaseConnection();
         private string orderId;
         private string productId;
-        public ProductsListWindow(string orderId)
+        private bool addInOrder;
+        public ProductsListWindow(string orderId, bool addInOrder)
         {
             InitializeComponent();
             this.orderId = orderId;
+            this.addInOrder = addInOrder;
         }
 
         private void ProductsListWindow_Load(object sender, EventArgs e)
         {
             ProductsListProductsTable.DataSource = null;
             ProductsListProductsTable.DataSource = dataBase.LoadTable("Products");
+            if (!addInOrder)
+            {
+                textBox1.Visible = true;
+                label2.Visible = true;
+            }
         }
 
         private void ProductsListButtonAdd_Click(object sender, EventArgs e)
         {
-            dataBase.AddProductIntoOrder(orderId, productId, ProductListComboBoxCount.Text);
+            if (!string.IsNullOrEmpty(productId))
+            {
+                if (addInOrder)
+                {
+                    dataBase.AddProductIntoOrder(orderId, productId, ProductListComboBoxCount.Text);
+                }
+                else
+                {
+                    dataBase.AddProductIntoList(productId, ProductListComboBoxCount.Text, textBox1.Text);
+                }
+            }
+            else
+            {
+                MessageBox.Show("Select an product!");
+            }
+                
+            
         }
 
         private void ProductsListProductsTable_CellMouseClick(object sender, DataGridViewCellMouseEventArgs e)

@@ -28,6 +28,7 @@
         /// </summary>
         private void InitializeComponent()
         {
+            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle18 = new System.Windows.Forms.DataGridViewCellStyle();
             this.ProductTable = new System.Windows.Forms.DataGridView();
             this.AdminProductToolsPanel = new System.Windows.Forms.Panel();
             this.AdminProductAddProductButton = new System.Windows.Forms.Button();
@@ -57,6 +58,7 @@
             this.OrderPage = new System.Windows.Forms.TabPage();
             this.OrdersTable = new System.Windows.Forms.DataGridView();
             this.PurchaseListPage = new System.Windows.Forms.TabPage();
+            this.ListTable = new System.Windows.Forms.DataGridView();
             this.AdminSellerToolsPanel = new System.Windows.Forms.Panel();
             this.AdminSellerLabelWarning = new System.Windows.Forms.Label();
             this.AdminSellerInfoPanel = new System.Windows.Forms.Panel();
@@ -88,10 +90,12 @@
             this.AdminSellerDeleteButton = new System.Windows.Forms.Button();
             this.AdminSellerEditButton = new System.Windows.Forms.Button();
             this.AdminOrderToolsPanel = new System.Windows.Forms.Panel();
+            this.button3 = new System.Windows.Forms.Button();
+            this.button2 = new System.Windows.Forms.Button();
             this.AdminOrderButtonCloseOrder = new System.Windows.Forms.Button();
-            this.AdminOrderButtonDelete = new System.Windows.Forms.Button();
             this.AdminOrderButtonEdit = new System.Windows.Forms.Button();
             this.panel1 = new System.Windows.Forms.Panel();
+            this.label7 = new System.Windows.Forms.Label();
             this.AdminOrderButtonDeleteProduct = new System.Windows.Forms.Button();
             this.label6 = new System.Windows.Forms.Label();
             this.AdminOrderButtonAddProduct = new System.Windows.Forms.Button();
@@ -112,6 +116,26 @@
             this.label3 = new System.Windows.Forms.Label();
             this.label2 = new System.Windows.Forms.Label();
             this.CreateOrderButton = new System.Windows.Forms.Button();
+            this.AdminListToolsPanel = new System.Windows.Forms.Panel();
+            this.button4 = new System.Windows.Forms.Button();
+            this.button6 = new System.Windows.Forms.Button();
+            this.button7 = new System.Windows.Forms.Button();
+            this.panel3 = new System.Windows.Forms.Panel();
+            this.label19 = new System.Windows.Forms.Label();
+            this.textBox7 = new System.Windows.Forms.TextBox();
+            this.textBox6 = new System.Windows.Forms.TextBox();
+            this.label9 = new System.Windows.Forms.Label();
+            this.label11 = new System.Windows.Forms.Label();
+            this.textBox4 = new System.Windows.Forms.TextBox();
+            this.label10 = new System.Windows.Forms.Label();
+            this.textBox3 = new System.Windows.Forms.TextBox();
+            this.PurchaseListId = new System.Windows.Forms.TextBox();
+            this.label13 = new System.Windows.Forms.Label();
+            this.label15 = new System.Windows.Forms.Label();
+            this.label18 = new System.Windows.Forms.Label();
+            this.button10 = new System.Windows.Forms.Button();
+            this.textBox5 = new System.Windows.Forms.TextBox();
+            this.button8 = new System.Windows.Forms.Button();
             ((System.ComponentModel.ISupportInitialize)(this.ProductTable)).BeginInit();
             this.AdminProductToolsPanel.SuspendLayout();
             this.AdminProductInfroPanel.SuspendLayout();
@@ -121,12 +145,16 @@
             ((System.ComponentModel.ISupportInitialize)(this.SellersTable)).BeginInit();
             this.OrderPage.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.OrdersTable)).BeginInit();
+            this.PurchaseListPage.SuspendLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.ListTable)).BeginInit();
             this.AdminSellerToolsPanel.SuspendLayout();
             this.AdminSellerInfoPanel.SuspendLayout();
             this.AdminOrderToolsPanel.SuspendLayout();
             this.panel1.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.ProductsInOrderTable)).BeginInit();
             this.UserDataPanel.SuspendLayout();
+            this.AdminListToolsPanel.SuspendLayout();
+            this.panel3.SuspendLayout();
             this.SuspendLayout();
             // 
             // ProductTable
@@ -146,12 +174,15 @@
             this.ProductTable.ReadOnly = true;
             this.ProductTable.RowHeadersWidth = 51;
             this.ProductTable.RowTemplate.Height = 24;
+            this.ProductTable.SelectionMode = System.Windows.Forms.DataGridViewSelectionMode.FullRowSelect;
+            this.ProductTable.ShowCellToolTips = false;
             this.ProductTable.Size = new System.Drawing.Size(1126, 750);
             this.ProductTable.TabIndex = 0;
             this.ProductTable.CellMouseClick += new System.Windows.Forms.DataGridViewCellMouseEventHandler(this.ProductTable_CellMouseClick);
             // 
             // AdminProductToolsPanel
             // 
+            this.AdminProductToolsPanel.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
             this.AdminProductToolsPanel.Controls.Add(this.AdminProductAddProductButton);
             this.AdminProductToolsPanel.Controls.Add(this.AdminProductLabelWarningProductNF);
             this.AdminProductToolsPanel.Controls.Add(this.AdminProductInfroPanel);
@@ -360,9 +391,9 @@
             // TabControlAdmin
             // 
             this.TabControlAdmin.Controls.Add(this.ProductsPage);
-            this.TabControlAdmin.Controls.Add(this.SellersPage);
             this.TabControlAdmin.Controls.Add(this.OrderPage);
             this.TabControlAdmin.Controls.Add(this.PurchaseListPage);
+            this.TabControlAdmin.Controls.Add(this.SellersPage);
             this.TabControlAdmin.Cursor = System.Windows.Forms.Cursors.Hand;
             this.TabControlAdmin.Location = new System.Drawing.Point(349, 74);
             this.TabControlAdmin.Name = "TabControlAdmin";
@@ -408,6 +439,8 @@
             this.SellersTable.MultiSelect = false;
             this.SellersTable.Name = "SellersTable";
             this.SellersTable.ReadOnly = true;
+            this.SellersTable.SelectionMode = System.Windows.Forms.DataGridViewSelectionMode.FullRowSelect;
+            this.SellersTable.ShowCellToolTips = false;
             this.SellersTable.Size = new System.Drawing.Size(1126, 750);
             this.SellersTable.TabIndex = 11;
             this.SellersTable.CellMouseClick += new System.Windows.Forms.DataGridViewCellMouseEventHandler(this.SellersTable_CellMouseClick);
@@ -434,13 +467,16 @@
             this.OrdersTable.Dock = System.Windows.Forms.DockStyle.Fill;
             this.OrdersTable.Location = new System.Drawing.Point(0, 0);
             this.OrdersTable.Name = "OrdersTable";
-            this.OrdersTable.RowHeadersVisible = false;
+            this.OrdersTable.ReadOnly = true;
+            this.OrdersTable.SelectionMode = System.Windows.Forms.DataGridViewSelectionMode.FullRowSelect;
+            this.OrdersTable.ShowCellToolTips = false;
             this.OrdersTable.Size = new System.Drawing.Size(1126, 750);
             this.OrdersTable.TabIndex = 0;
             this.OrdersTable.CellMouseClick += new System.Windows.Forms.DataGridViewCellMouseEventHandler(this.OrdersTable_CellMouseClick);
             // 
             // PurchaseListPage
             // 
+            this.PurchaseListPage.Controls.Add(this.ListTable);
             this.PurchaseListPage.Location = new System.Drawing.Point(4, 22);
             this.PurchaseListPage.Margin = new System.Windows.Forms.Padding(0);
             this.PurchaseListPage.Name = "PurchaseListPage";
@@ -449,8 +485,28 @@
             this.PurchaseListPage.Text = "Purchase list";
             this.PurchaseListPage.UseVisualStyleBackColor = true;
             // 
+            // ListTable
+            // 
+            this.ListTable.AllowUserToAddRows = false;
+            this.ListTable.AllowUserToDeleteRows = false;
+            this.ListTable.AutoSizeColumnsMode = System.Windows.Forms.DataGridViewAutoSizeColumnsMode.Fill;
+            this.ListTable.BackgroundColor = System.Drawing.SystemColors.ControlLightLight;
+            this.ListTable.BorderStyle = System.Windows.Forms.BorderStyle.None;
+            this.ListTable.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
+            this.ListTable.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.ListTable.Location = new System.Drawing.Point(0, 0);
+            this.ListTable.MultiSelect = false;
+            this.ListTable.Name = "ListTable";
+            this.ListTable.ReadOnly = true;
+            this.ListTable.SelectionMode = System.Windows.Forms.DataGridViewSelectionMode.FullRowSelect;
+            this.ListTable.ShowCellToolTips = false;
+            this.ListTable.Size = new System.Drawing.Size(1126, 750);
+            this.ListTable.TabIndex = 0;
+            this.ListTable.CellMouseClick += new System.Windows.Forms.DataGridViewCellMouseEventHandler(this.ListTable_CellMouseClick);
+            // 
             // AdminSellerToolsPanel
             // 
+            this.AdminSellerToolsPanel.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
             this.AdminSellerToolsPanel.Controls.Add(this.AdminSellerLabelWarning);
             this.AdminSellerToolsPanel.Controls.Add(this.AdminSellerInfoPanel);
             this.AdminSellerToolsPanel.Controls.Add(this.AdminSellerFindButton);
@@ -749,8 +805,10 @@
             // 
             // AdminOrderToolsPanel
             // 
+            this.AdminOrderToolsPanel.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
+            this.AdminOrderToolsPanel.Controls.Add(this.button3);
+            this.AdminOrderToolsPanel.Controls.Add(this.button2);
             this.AdminOrderToolsPanel.Controls.Add(this.AdminOrderButtonCloseOrder);
-            this.AdminOrderToolsPanel.Controls.Add(this.AdminOrderButtonDelete);
             this.AdminOrderToolsPanel.Controls.Add(this.AdminOrderButtonEdit);
             this.AdminOrderToolsPanel.Controls.Add(this.panel1);
             this.AdminOrderToolsPanel.Controls.Add(this.label5);
@@ -761,6 +819,27 @@
             this.AdminOrderToolsPanel.Size = new System.Drawing.Size(336, 694);
             this.AdminOrderToolsPanel.TabIndex = 0;
             this.AdminOrderToolsPanel.Visible = false;
+            // 
+            // button3
+            // 
+            this.button3.Cursor = System.Windows.Forms.Cursors.Hand;
+            this.button3.Location = new System.Drawing.Point(91, 659);
+            this.button3.Name = "button3";
+            this.button3.Size = new System.Drawing.Size(150, 30);
+            this.button3.TabIndex = 27;
+            this.button3.Text = "Delete";
+            this.button3.UseVisualStyleBackColor = true;
+            this.button3.Click += new System.EventHandler(this.button3_Click);
+            // 
+            // button2
+            // 
+            this.button2.Location = new System.Drawing.Point(247, 7);
+            this.button2.Name = "button2";
+            this.button2.Size = new System.Drawing.Size(70, 23);
+            this.button2.TabIndex = 26;
+            this.button2.Text = "Refresh";
+            this.button2.UseVisualStyleBackColor = true;
+            this.button2.Click += new System.EventHandler(this.button2_Click);
             // 
             // AdminOrderButtonCloseOrder
             // 
@@ -773,16 +852,6 @@
             this.AdminOrderButtonCloseOrder.UseVisualStyleBackColor = true;
             this.AdminOrderButtonCloseOrder.Click += new System.EventHandler(this.AdminOrderButtonCloseOrder_Click);
             // 
-            // AdminOrderButtonDelete
-            // 
-            this.AdminOrderButtonDelete.Cursor = System.Windows.Forms.Cursors.Hand;
-            this.AdminOrderButtonDelete.Location = new System.Drawing.Point(91, 661);
-            this.AdminOrderButtonDelete.Name = "AdminOrderButtonDelete";
-            this.AdminOrderButtonDelete.Size = new System.Drawing.Size(150, 30);
-            this.AdminOrderButtonDelete.TabIndex = 9;
-            this.AdminOrderButtonDelete.Text = "Delete";
-            this.AdminOrderButtonDelete.UseVisualStyleBackColor = true;
-            // 
             // AdminOrderButtonEdit
             // 
             this.AdminOrderButtonEdit.Cursor = System.Windows.Forms.Cursors.Hand;
@@ -792,10 +861,12 @@
             this.AdminOrderButtonEdit.TabIndex = 24;
             this.AdminOrderButtonEdit.Text = "Edit";
             this.AdminOrderButtonEdit.UseVisualStyleBackColor = true;
+            this.AdminOrderButtonEdit.Click += new System.EventHandler(this.AdminOrderButtonEdit_Click);
             // 
             // panel1
             // 
             this.panel1.BackColor = System.Drawing.SystemColors.Control;
+            this.panel1.Controls.Add(this.label7);
             this.panel1.Controls.Add(this.AdminOrderButtonDeleteProduct);
             this.panel1.Controls.Add(this.label6);
             this.panel1.Controls.Add(this.AdminOrderButtonAddProduct);
@@ -812,6 +883,15 @@
             this.panel1.Name = "panel1";
             this.panel1.Size = new System.Drawing.Size(306, 520);
             this.panel1.TabIndex = 23;
+            // 
+            // label7
+            // 
+            this.label7.AutoSize = true;
+            this.label7.Location = new System.Drawing.Point(10, 460);
+            this.label7.Name = "label7";
+            this.label7.Size = new System.Drawing.Size(33, 13);
+            this.label7.TabIndex = 25;
+            this.label7.Text = "Time:";
             // 
             // AdminOrderButtonDeleteProduct
             // 
@@ -852,7 +932,17 @@
             this.ProductsInOrderTable.Location = new System.Drawing.Point(10, 240);
             this.ProductsInOrderTable.MultiSelect = false;
             this.ProductsInOrderTable.Name = "ProductsInOrderTable";
+            this.ProductsInOrderTable.ReadOnly = true;
+            dataGridViewCellStyle18.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleLeft;
+            dataGridViewCellStyle18.BackColor = System.Drawing.SystemColors.Control;
+            dataGridViewCellStyle18.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
+            dataGridViewCellStyle18.ForeColor = System.Drawing.SystemColors.WindowText;
+            dataGridViewCellStyle18.SelectionBackColor = System.Drawing.Color.FromArgb(((int)(((byte)(192)))), ((int)(((byte)(255)))), ((int)(((byte)(192)))));
+            dataGridViewCellStyle18.SelectionForeColor = System.Drawing.SystemColors.HighlightText;
+            dataGridViewCellStyle18.WrapMode = System.Windows.Forms.DataGridViewTriState.True;
+            this.ProductsInOrderTable.RowHeadersDefaultCellStyle = dataGridViewCellStyle18;
             this.ProductsInOrderTable.RowHeadersVisible = false;
+            this.ProductsInOrderTable.SelectionMode = System.Windows.Forms.DataGridViewSelectionMode.FullRowSelect;
             this.ProductsInOrderTable.Size = new System.Drawing.Size(285, 140);
             this.ProductsInOrderTable.TabIndex = 21;
             this.ProductsInOrderTable.CellMouseClick += new System.Windows.Forms.DataGridViewCellMouseEventHandler(this.ProductsInOrderTable_CellMouseClick);
@@ -936,9 +1026,9 @@
             this.label5.ForeColor = System.Drawing.Color.Red;
             this.label5.Location = new System.Drawing.Point(121, 31);
             this.label5.Name = "label5";
-            this.label5.Size = new System.Drawing.Size(90, 13);
+            this.label5.Size = new System.Drawing.Size(95, 13);
             this.label5.TabIndex = 10;
-            this.label5.Text = "Order not found!!!";
+            this.label5.Text = "Orders not found!!!";
             this.label5.Visible = false;
             // 
             // button1
@@ -950,23 +1040,25 @@
             this.button1.TabIndex = 9;
             this.button1.Text = "Find";
             this.button1.UseVisualStyleBackColor = true;
+            this.button1.Click += new System.EventHandler(this.button1_Click);
             // 
             // textBox1
             // 
             this.textBox1.Location = new System.Drawing.Point(10, 9);
             this.textBox1.Name = "textBox1";
-            this.textBox1.Size = new System.Drawing.Size(306, 20);
+            this.textBox1.Size = new System.Drawing.Size(231, 20);
             this.textBox1.TabIndex = 9;
             // 
             // UserDataPanel
             // 
+            this.UserDataPanel.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
             this.UserDataPanel.Controls.Add(this.label4);
             this.UserDataPanel.Controls.Add(this.label3);
             this.UserDataPanel.Controls.Add(this.label2);
             this.UserDataPanel.Cursor = System.Windows.Forms.Cursors.Hand;
-            this.UserDataPanel.Location = new System.Drawing.Point(4, 2);
+            this.UserDataPanel.Location = new System.Drawing.Point(4, 12);
             this.UserDataPanel.Name = "UserDataPanel";
-            this.UserDataPanel.Size = new System.Drawing.Size(336, 146);
+            this.UserDataPanel.Size = new System.Drawing.Size(336, 101);
             this.UserDataPanel.TabIndex = 11;
             this.UserDataPanel.MouseClick += new System.Windows.Forms.MouseEventHandler(this.UserDataPanel_MouseClick);
             // 
@@ -1010,20 +1102,228 @@
             this.CreateOrderButton.UseVisualStyleBackColor = true;
             this.CreateOrderButton.Click += new System.EventHandler(this.CreateOrderButton_Click);
             // 
+            // AdminListToolsPanel
+            // 
+            this.AdminListToolsPanel.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
+            this.AdminListToolsPanel.Controls.Add(this.button8);
+            this.AdminListToolsPanel.Controls.Add(this.button4);
+            this.AdminListToolsPanel.Controls.Add(this.button6);
+            this.AdminListToolsPanel.Controls.Add(this.button7);
+            this.AdminListToolsPanel.Controls.Add(this.panel3);
+            this.AdminListToolsPanel.Controls.Add(this.label18);
+            this.AdminListToolsPanel.Controls.Add(this.button10);
+            this.AdminListToolsPanel.Controls.Add(this.textBox5);
+            this.AdminListToolsPanel.Location = new System.Drawing.Point(4, 154);
+            this.AdminListToolsPanel.Name = "AdminListToolsPanel";
+            this.AdminListToolsPanel.Size = new System.Drawing.Size(336, 694);
+            this.AdminListToolsPanel.TabIndex = 28;
+            this.AdminListToolsPanel.Visible = false;
+            // 
+            // button4
+            // 
+            this.button4.Cursor = System.Windows.Forms.Cursors.Hand;
+            this.button4.Location = new System.Drawing.Point(167, 661);
+            this.button4.Name = "button4";
+            this.button4.Size = new System.Drawing.Size(150, 30);
+            this.button4.TabIndex = 27;
+            this.button4.Text = "Delete";
+            this.button4.UseVisualStyleBackColor = true;
+            this.button4.Click += new System.EventHandler(this.button4_Click);
+            // 
+            // button6
+            // 
+            this.button6.Cursor = System.Windows.Forms.Cursors.Hand;
+            this.button6.Location = new System.Drawing.Point(10, 660);
+            this.button6.Name = "button6";
+            this.button6.Size = new System.Drawing.Size(150, 30);
+            this.button6.TabIndex = 25;
+            this.button6.Text = "Close order";
+            this.button6.UseVisualStyleBackColor = true;
+            this.button6.Click += new System.EventHandler(this.button6_Click);
+            // 
+            // button7
+            // 
+            this.button7.Cursor = System.Windows.Forms.Cursors.Hand;
+            this.button7.Location = new System.Drawing.Point(167, 628);
+            this.button7.Name = "button7";
+            this.button7.Size = new System.Drawing.Size(150, 30);
+            this.button7.TabIndex = 24;
+            this.button7.Text = "Edit";
+            this.button7.UseVisualStyleBackColor = true;
+            this.button7.Click += new System.EventHandler(this.button7_Click);
+            // 
+            // panel3
+            // 
+            this.panel3.BackColor = System.Drawing.SystemColors.Control;
+            this.panel3.Controls.Add(this.label19);
+            this.panel3.Controls.Add(this.textBox7);
+            this.panel3.Controls.Add(this.textBox6);
+            this.panel3.Controls.Add(this.label9);
+            this.panel3.Controls.Add(this.label11);
+            this.panel3.Controls.Add(this.textBox4);
+            this.panel3.Controls.Add(this.label10);
+            this.panel3.Controls.Add(this.textBox3);
+            this.panel3.Controls.Add(this.PurchaseListId);
+            this.panel3.Controls.Add(this.label13);
+            this.panel3.Controls.Add(this.label15);
+            this.panel3.Location = new System.Drawing.Point(10, 102);
+            this.panel3.Name = "panel3";
+            this.panel3.Size = new System.Drawing.Size(306, 520);
+            this.panel3.TabIndex = 23;
+            // 
+            // label19
+            // 
+            this.label19.AutoSize = true;
+            this.label19.Location = new System.Drawing.Point(7, 280);
+            this.label19.Name = "label19";
+            this.label19.Size = new System.Drawing.Size(60, 13);
+            this.label19.TabIndex = 31;
+            this.label19.Text = "Total price:";
+            // 
+            // textBox7
+            // 
+            this.textBox7.Location = new System.Drawing.Point(7, 300);
+            this.textBox7.MaxLength = 20;
+            this.textBox7.Name = "textBox7";
+            this.textBox7.ReadOnly = true;
+            this.textBox7.Size = new System.Drawing.Size(194, 20);
+            this.textBox7.TabIndex = 30;
+            // 
+            // textBox6
+            // 
+            this.textBox6.Location = new System.Drawing.Point(7, 240);
+            this.textBox6.MaxLength = 20;
+            this.textBox6.Name = "textBox6";
+            this.textBox6.Size = new System.Drawing.Size(194, 20);
+            this.textBox6.TabIndex = 29;
+            // 
+            // label9
+            // 
+            this.label9.AutoSize = true;
+            this.label9.Location = new System.Drawing.Point(7, 220);
+            this.label9.Name = "label9";
+            this.label9.Size = new System.Drawing.Size(38, 13);
+            this.label9.TabIndex = 28;
+            this.label9.Text = "Count:";
+            // 
+            // label11
+            // 
+            this.label11.AutoSize = true;
+            this.label11.Location = new System.Drawing.Point(7, 100);
+            this.label11.Name = "label11";
+            this.label11.Size = new System.Drawing.Size(58, 13);
+            this.label11.TabIndex = 27;
+            this.label11.Text = "Product id:";
+            // 
+            // textBox4
+            // 
+            this.textBox4.Location = new System.Drawing.Point(7, 120);
+            this.textBox4.MaxLength = 20;
+            this.textBox4.Name = "textBox4";
+            this.textBox4.ReadOnly = true;
+            this.textBox4.Size = new System.Drawing.Size(194, 20);
+            this.textBox4.TabIndex = 26;
+            // 
+            // label10
+            // 
+            this.label10.AutoSize = true;
+            this.label10.Location = new System.Drawing.Point(7, 160);
+            this.label10.Name = "label10";
+            this.label10.Size = new System.Drawing.Size(73, 13);
+            this.label10.TabIndex = 11;
+            this.label10.Text = "Price per one:";
+            // 
+            // textBox3
+            // 
+            this.textBox3.Location = new System.Drawing.Point(7, 180);
+            this.textBox3.MaxLength = 20;
+            this.textBox3.Name = "textBox3";
+            this.textBox3.Size = new System.Drawing.Size(194, 20);
+            this.textBox3.TabIndex = 7;
+            // 
+            // PurchaseListId
+            // 
+            this.PurchaseListId.Location = new System.Drawing.Point(7, 60);
+            this.PurchaseListId.MaxLength = 100;
+            this.PurchaseListId.Name = "PurchaseListId";
+            this.PurchaseListId.ReadOnly = true;
+            this.PurchaseListId.Size = new System.Drawing.Size(143, 20);
+            this.PurchaseListId.TabIndex = 2;
+            // 
+            // label13
+            // 
+            this.label13.AutoSize = true;
+            this.label13.Font = new System.Drawing.Font("Microsoft Sans Serif", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
+            this.label13.Location = new System.Drawing.Point(7, 40);
+            this.label13.Name = "label13";
+            this.label13.Size = new System.Drawing.Size(20, 15);
+            this.label13.TabIndex = 1;
+            this.label13.Text = "id:";
+            // 
+            // label15
+            // 
+            this.label15.AutoSize = true;
+            this.label15.Font = new System.Drawing.Font("Microsoft Sans Serif", 11.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
+            this.label15.Location = new System.Drawing.Point(122, 12);
+            this.label15.Name = "label15";
+            this.label15.Size = new System.Drawing.Size(31, 18);
+            this.label15.TabIndex = 0;
+            this.label15.Text = "List";
+            // 
+            // label18
+            // 
+            this.label18.AutoSize = true;
+            this.label18.ForeColor = System.Drawing.Color.Red;
+            this.label18.Location = new System.Drawing.Point(121, 31);
+            this.label18.Name = "label18";
+            this.label18.Size = new System.Drawing.Size(80, 13);
+            this.label18.TabIndex = 10;
+            this.label18.Text = "List not found!!!";
+            this.label18.Visible = false;
+            // 
+            // button10
+            // 
+            this.button10.Cursor = System.Windows.Forms.Cursors.Hand;
+            this.button10.Location = new System.Drawing.Point(10, 35);
+            this.button10.Name = "button10";
+            this.button10.Size = new System.Drawing.Size(306, 23);
+            this.button10.TabIndex = 9;
+            this.button10.Text = "Find";
+            this.button10.UseVisualStyleBackColor = true;
+            // 
+            // textBox5
+            // 
+            this.textBox5.Location = new System.Drawing.Point(10, 9);
+            this.textBox5.Name = "textBox5";
+            this.textBox5.Size = new System.Drawing.Size(307, 20);
+            this.textBox5.TabIndex = 9;
+            // 
+            // button8
+            // 
+            this.button8.Cursor = System.Windows.Forms.Cursors.Hand;
+            this.button8.Location = new System.Drawing.Point(10, 627);
+            this.button8.Name = "button8";
+            this.button8.Size = new System.Drawing.Size(150, 30);
+            this.button8.TabIndex = 28;
+            this.button8.Text = "Create";
+            this.button8.UseVisualStyleBackColor = true;
+            this.button8.Click += new System.EventHandler(this.button8_Click);
+            // 
             // mainWindow
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(1484, 861);
-            this.Controls.Add(this.AdminProductToolsPanel);
-            this.Controls.Add(this.AdminSellerToolsPanel);
             this.Controls.Add(this.CreateOrderButton);
             this.Controls.Add(this.UserDataPanel);
             this.Controls.Add(this.TabControlAdmin);
+            this.Controls.Add(this.AdminSellerToolsPanel);
+            this.Controls.Add(this.AdminListToolsPanel);
             this.Controls.Add(this.AdminOrderToolsPanel);
+            this.Controls.Add(this.AdminProductToolsPanel);
             this.Name = "mainWindow";
             this.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen;
-            this.Text = "Form1";
+            this.Text = "Mobile Store";
             this.Load += new System.EventHandler(this.mainWindow_Load);
             ((System.ComponentModel.ISupportInitialize)(this.ProductTable)).EndInit();
             this.AdminProductToolsPanel.ResumeLayout(false);
@@ -1036,6 +1336,8 @@
             ((System.ComponentModel.ISupportInitialize)(this.SellersTable)).EndInit();
             this.OrderPage.ResumeLayout(false);
             ((System.ComponentModel.ISupportInitialize)(this.OrdersTable)).EndInit();
+            this.PurchaseListPage.ResumeLayout(false);
+            ((System.ComponentModel.ISupportInitialize)(this.ListTable)).EndInit();
             this.AdminSellerToolsPanel.ResumeLayout(false);
             this.AdminSellerToolsPanel.PerformLayout();
             this.AdminSellerInfoPanel.ResumeLayout(false);
@@ -1047,6 +1349,10 @@
             ((System.ComponentModel.ISupportInitialize)(this.ProductsInOrderTable)).EndInit();
             this.UserDataPanel.ResumeLayout(false);
             this.UserDataPanel.PerformLayout();
+            this.AdminListToolsPanel.ResumeLayout(false);
+            this.AdminListToolsPanel.PerformLayout();
+            this.panel3.ResumeLayout(false);
+            this.panel3.PerformLayout();
             this.ResumeLayout(false);
 
         }
@@ -1118,7 +1424,6 @@
         private System.Windows.Forms.Panel AdminOrderToolsPanel;
         private System.Windows.Forms.Button CreateOrderButton;
         private System.Windows.Forms.DataGridView OrdersTable;
-        private System.Windows.Forms.Button AdminOrderButtonDelete;
         private System.Windows.Forms.Button AdminOrderButtonEdit;
         private System.Windows.Forms.Panel panel1;
         private System.Windows.Forms.Button AdminOrderButtonDeleteProduct;
@@ -1137,6 +1442,30 @@
         private System.Windows.Forms.Button button1;
         private System.Windows.Forms.TextBox textBox1;
         private System.Windows.Forms.Button AdminOrderButtonCloseOrder;
+        private System.Windows.Forms.Label label7;
+        private System.Windows.Forms.Button button2;
+        private System.Windows.Forms.Button button3;
+        private System.Windows.Forms.DataGridView ListTable;
+        private System.Windows.Forms.Panel AdminListToolsPanel;
+        private System.Windows.Forms.Button button4;
+        private System.Windows.Forms.Button button6;
+        private System.Windows.Forms.Button button7;
+        private System.Windows.Forms.Panel panel3;
+        private System.Windows.Forms.Label label19;
+        private System.Windows.Forms.TextBox textBox7;
+        private System.Windows.Forms.TextBox textBox6;
+        private System.Windows.Forms.Label label9;
+        private System.Windows.Forms.Label label11;
+        private System.Windows.Forms.TextBox textBox4;
+        private System.Windows.Forms.Label label10;
+        private System.Windows.Forms.TextBox textBox3;
+        private System.Windows.Forms.TextBox PurchaseListId;
+        private System.Windows.Forms.Label label13;
+        private System.Windows.Forms.Label label15;
+        private System.Windows.Forms.Label label18;
+        private System.Windows.Forms.Button button10;
+        private System.Windows.Forms.TextBox textBox5;
+        private System.Windows.Forms.Button button8;
     }
 }
 

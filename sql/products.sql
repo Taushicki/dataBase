@@ -392,7 +392,7 @@
 					--TABLE ORDER
 					
 					--Create Table Order
--- create table "order"(
+-- create table orders(
 -- 	orderer_id serial,
 -- 	seller_id int not null,
 -- 	product_id int not null,
@@ -401,9 +401,6 @@
 -- 	order_date date not null
 -- );
 
-insert into orders(seller_id, price, order_data) value(
-	
-)
 
 -- alter table "order" add constraint FK_order_sellers
 -- foreign key (seller_id) references sellers (seller_id);
@@ -459,16 +456,63 @@ select * from products_in_orders
 
 
 					--Create Function AddOrder()
--- create or replace function AddOrder(_seller_id int) returns void as
--- $$
--- begin 
--- 	insert into orders(seller_id, order_date) values (_seller_id, current_timestamp);
--- end;
--- $$ language plpgsql;
+CREATE OR REPLACE FUNCTION AddOrder(_seller_id INT, OUT new_order_id INT) RETURNS INT AS $$
+BEGIN 
+    INSERT INTO orders (seller_id, order_date) 
+    VALUES (_seller_id, current_timestamp) 
+    RETURNING order_id INTO new_order_id;
+END;
+$$ LANGUAGE plpgsql;
 
 
 					--Drop Function AddOrder()
 -- drop function AddOrder(_seller_id int);
+
+
+					--Create Function ChangeOrderSeller()
+-- CREATE OR REPLACE FUNCTION ChangeOrderSeller(_order_id int, _new_seller_id int)
+-- RETURNS VOID AS $$
+-- BEGIN
+--     UPDATE orders
+--     SET
+--         seller_id = _new_seller_id
+--     WHERE
+--         order_id = _order_id;
+-- END;
+-- $$ LANGUAGE plpgsql;
+
+
+
+					--Create Function OrdersBySeller()
+-- CREATE OR REPLACE FUNCTION OrdersBySeller(_seller_id int) RETURNS TABLE (
+--     "Order id" int,
+--     "Seller id" int,
+--     "Price" money,
+--     "Date" date
+-- ) AS $$
+-- BEGIN
+--     RETURN QUERY 
+--     SELECT
+--         o.order_id,
+--         o.seller_id,
+--         COALESCE(o.price, 0::money) AS price,
+--         o.order_date
+--     FROM
+--         orders o
+--     WHERE
+--         o.seller_id = _seller_id;
+-- END
+-- $$ LANGUAGE plpgsql;
+
+
+					--Create Ffunction DeleteOrder
+-- CREATE OR REPLACE FUNCTION DeleteOrder(_order_id int) RETURNS VOID AS $$
+-- BEGIN
+--     DELETE FROM products_in_orders WHERE order_id = _order_id;
+--     DELETE FROM orders WHERE order_id = _order_id;
+-- END;
+-- $$ LANGUAGE plpgsql;
+
 
 					--TABLE PRODUCTS_IN_ORDERS
 
@@ -508,6 +552,8 @@ select * from products_in_orders
 -- drop function ProductsInOrdersSelect(_order_id int)
 
 
+
+					
 
 
 					--Create Function AddProductIntoOrder
@@ -562,7 +608,34 @@ select * from products_in_orders
 					--Test Function DeleteProductInOrder() 
 -- select * from DeleteProductInOrder(15, 2);
 
+-- CREATE OR REPLACE FUNCTION CloseOrder(p_order_id INT) RETURNS VOID AS
+-- $$
+-- DECLARE
+--     v_product_id INT;
+--     v_product_count INT;
+-- BEGIN
+--     IF EXISTS (SELECT 1 FROM products_in_orders WHERE order_id = p_order_id) THEN
+--         SELECT product_id, count
+--         INTO v_product_id, v_product_count
+--         FROM products_in_orders
+--         WHERE order_id = p_order_id;
 
+--         DELETE FROM products_in_orders WHERE order_id = p_order_id;
+
+--         UPDATE products
+--         SET count = count - v_product_count
+--         WHERE id = v_product_id;
+
+--         DELETE FROM orders WHERE order_id = p_order_id;
+--     END IF;
+-- END;
+-- $$ LANGUAGE plpgsql;
+
+DROP FUNCTION closeorder(integer)
+select * from CloseOrder(8)
+select * from products
+select * from products_in_orders
+select * from orders
 
 					--TABLE PURCHASE_LIST
 
@@ -576,4 +649,79 @@ select * from products_in_orders
 -- );
 
 
+					--Create Function Listsselect()
+-- CREATE OR REPLACE FUNCTION ListsSelect()
+-- RETURNS TABLE (
+--     "List id" INT,
+--     "Product id" INT,
+--     "Count" INT,
+--     "Price per one" MONEY,
+--     "Final price" MONEY
+-- ) AS $$
+-- BEGIN
+--     RETURN QUERY SELECT * FROM purchase_list;
+-- END;
+-- $$ LANGUAGE plpgsql;
 
+
+
+					--Create Function AddToPurchaseList()
+-- CREATE OR REPLACE FUNCTION AddToPurchaseList(
+--     _product_id INT,
+--     _count INT,
+--     _price_per_one MONEY
+-- )
+-- RETURNS VOID AS $$
+-- BEGIN
+--     INSERT INTO purchase_list (product_id, count, price_per_one, final_price)
+--     VALUES (_product_id, _count, _price_per_one, _count * _price_per_one);
+-- END;
+-- $$ LANGUAGE plpgsql;
+
+
+
+
+					--Create Function UpdatePurchaseListItem
+-- CREATE OR REPLACE FUNCTION UpdatePurchaseListItem(
+--     _list_id INT,
+--     _count INT,
+--     _price_per_one MONEY
+-- )
+-- RETURNS VOID AS $$
+-- BEGIN
+--     UPDATE purchase_list
+--     SET
+--         count = _count,
+--         price_per_one = _price_per_one,
+--         final_price = _count * _price_per_one
+--     WHERE
+--         list_id = _list_id;
+-- END;
+-- $$ LANGUAGE plpgsql;
+
+
+
+
+					--Create Function ClosePurchaseList()
+-- CREATE OR REPLACE FUNCTION ClosePurchaseList(_list_id INT)
+-- RETURNS VOID AS $$
+-- BEGIN
+--     UPDATE products p
+--     SET count = p.count + pl.count
+--     FROM purchase_list pl
+--     WHERE p.id = pl.product_id AND pl.list_id = _list_id;
+--     DELETE FROM purchase_list
+--     WHERE list_id = _list_id;
+-- END;
+-- $$ LANGUAGE plpgsql;
+
+--Create Function DeletePurchaseList()
+-- CREATE OR REPLACE FUNCTION DeletePurchaseList(_list_id int) RETURNS VOID AS $$
+-- BEGIN
+--     DELETE FROM purchase_list WHERE list_id = _list_id;
+-- END;
+-- $$ LANGUAGE plpgsql;
+
+select * from purchase_list
+
+select ClosePurchaseList(1);

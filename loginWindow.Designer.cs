@@ -323,9 +323,9 @@
             this.ClientSize = new System.Drawing.Size(334, 561);
             this.Controls.Add(this.RegisterUserPanel);
             this.Controls.Add(this.LoginUserPanel);
+            this.FormBorderStyle = System.Windows.Forms.FormBorderStyle.None;
             this.Name = "loginWindow";
             this.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen;
-            this.Text = "loginWindow";
             this.RegisterUserPanel.ResumeLayout(false);
             this.RegisterUserPanel.PerformLayout();
             this.LoginUserPanel.ResumeLayout(false);

@@ -107,7 +107,6 @@ namespace dataBase
                     { "Rights", ProfileComboBoxRights.Text}
                 };
             }
-            
 
             dataBase.UpdateSellersData(sellerData);
         }

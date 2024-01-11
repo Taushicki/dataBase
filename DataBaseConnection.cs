@@ -13,8 +13,8 @@ namespace dataBase
     {
         private readonly string connectionData = string.Format("Server={0};Port={1};" +
             "User id={2};Password={3};Database={4};",
-            "localhost", 5432, "postgres",
-            "password", "mobiledevicestore");
+            "172.20.7.9", 5432, "st1091",
+            "pwd1091", "mobiledevice");
         private NpgsqlConnection connection;
 
         public DataBaseConnection()
@@ -25,7 +25,7 @@ namespace dataBase
 
         public DataTable GetUserDataByLogin(string login)
         {
-            using (NpgsqlCommand command = new NpgsqlCommand("SELECT * FROM GetUserByLogin('" + login + "');", connection))
+            using (NpgsqlCommand command = new NpgsqlCommand($"SELECT * FROM GetUserByLogin('{ login }');", connection))
             {
                 command.Parameters.AddWithValue("login", login);
                 using (NpgsqlDataAdapter da = new NpgsqlDataAdapter(command))
@@ -39,7 +39,7 @@ namespace dataBase
 
         public DataTable GetSellerDataByUserID(string id)
         {
-            using (NpgsqlCommand command = new NpgsqlCommand("SELECT * FROM GetSellerDataByUserId('" + id + "');", connection))
+            using (NpgsqlCommand command = new NpgsqlCommand($"SELECT * FROM GetSellerDataByUserId('{ id }');", connection))
             {
                 command.Parameters.AddWithValue("id", id);
                 using (NpgsqlDataAdapter da = new NpgsqlDataAdapter(command))
@@ -112,11 +112,11 @@ namespace dataBase
             }
         }
 
-        public void CreateOrder(string seller_id)
+        public string CreateOrder(string seller_id)
         {
             using (NpgsqlCommand command = new NpgsqlCommand(@"SELECT * FROM AddOrder(" + seller_id + "::int" + ");", connection))
             {
-                command.ExecuteNonQuery();
+                return Convert.ToString(command.ExecuteScalar());
             }
         }
 
@@ -141,6 +141,69 @@ namespace dataBase
         public void DeleteProductFromOrder(string product_id, string order_id)
         {
             using (NpgsqlCommand command = new NpgsqlCommand(@"SELECT * FROM DeleteProductInOrder(" + product_id + ", " + order_id + ");", connection))
+            {
+                command.ExecuteNonQuery();
+            }
+        }
+        public void ChangeOrderSeller(string order_id, string seller_id)
+        {
+            using (NpgsqlCommand command = new NpgsqlCommand(@"SELECT * FROM ChangeOrderSeller(" + order_id + ", " + seller_id + ");", connection))
+            {
+                command.ExecuteNonQuery();
+            }
+        }
+
+        public void DeleteOrder(string order_id)
+        {
+            using (NpgsqlCommand command = new NpgsqlCommand(@"SELECT * FROM DeleteOrder(" + order_id + ");", connection))
+            {
+                command.ExecuteNonQuery();
+            }
+        }
+
+        public DataTable GetOrdersBySellerId(string seller_id)
+        {
+            using (NpgsqlCommand command = new NpgsqlCommand(@"SELECT * FROM OrdersBySeller(" + seller_id + ");", connection))
+            {
+                DataTable dt = new DataTable();
+                dt.Load(command.ExecuteReader());
+                return dt;
+            }
+        }
+
+        public void CloseOrder(string order_id)
+        {
+            using (NpgsqlCommand command = new NpgsqlCommand(@"SELECT * FROM CloseOrder(" + order_id + ");", connection))
+            {
+                command.ExecuteNonQuery();
+            }
+        }
+        public void AddProductIntoList(string product_id, string count, string price)
+        {
+            using (NpgsqlCommand command = new NpgsqlCommand(@"SELECT * FROM AddToPurchaseList(" + product_id + ", " + count + ", " + price + "::MONEY);", connection))
+            {
+                command.ExecuteNonQuery();
+            }
+        }
+
+        public void UpdateProductInList(string list_id, string count, string price)
+        {
+            using (NpgsqlCommand command = new NpgsqlCommand(@"SELECT * FROM UpdatePurchaseListItem(" + list_id + ", " + count + ", " + price + "::MONEY);", connection))
+            {
+                command.ExecuteNonQuery();
+            }
+        }
+
+        public void CloseList(string list_id)
+        {
+            using (NpgsqlCommand command = new NpgsqlCommand(@"SELECT * FROM ClosePurchaseList(" + list_id + ");", connection))
+            {
+                command.ExecuteNonQuery();
+            }
+        }
+        public void DeleteList(string list_id)
+        {
+            using (NpgsqlCommand command = new NpgsqlCommand(@"SELECT * FROM DeletePurchaseList(" + list_id + ");", connection))
             {
                 command.ExecuteNonQuery();
             }
